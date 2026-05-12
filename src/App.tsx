@@ -1,6 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { LandingPage } from "./LandingPage";
 import { RegisterPage } from "./pages/RegisterPage";
 import { LoginPage } from "./pages/LoginPage";
 import { DashboardPageContent } from "./pages/DashboardPageContent";
@@ -12,6 +11,7 @@ import { PublicRoute } from "./components/PublicRoute";
 import { AppLayout } from "./components/AppLayout";
 import { ApiProvider, useAuth, api } from "./api-query";
 import { User } from "./types";
+import { LandingPage } from "./app/landingpage";
 
 function AppContent() {
   const [user, setUser] = useState<User | null>(null);
