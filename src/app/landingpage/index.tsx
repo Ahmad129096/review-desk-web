@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { User } from "../../types";
 import { useState, useEffect } from "react";
-import "./styles/LandingPage.css";
+import "../../styles/LandingPage.css";
 
 import { AnimatedBackground } from "./AnimatedBackground";
 import { Navigation } from "./Navigation";
