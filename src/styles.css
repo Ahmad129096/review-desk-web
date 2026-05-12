@@ -488,44 +488,6 @@ textarea {
   padding-left: 20px;
 }
 
-/* Landing Page Styles */
-.landingPage {
-  min-height: 100vh;
-}
-
-.hero {
-  padding: 80px 48px;
-  text-align: center;
-  background: linear-gradient(135deg, #f8fafc 0%, #eef2f7 100%);
-}
-
-.heroContent {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.hero h1 {
-  font-size: 56px;
-  line-height: 1.1;
-  margin: 32px 0 24px;
-  color: #101828;
-  letter-spacing: -0.02em;
-}
-
-.hero p {
-  font-size: 20px;
-  line-height: 1.6;
-  color: #475467;
-  margin-bottom: 40px;
-}
-
-.heroActions {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  align-items: center;
-}
-
 .primaryButton.large {
   padding: 16px 32px;
   font-size: 18px;
@@ -1310,13 +1272,23 @@ textarea {
     grid-template-columns: 1fr;
   }
 
-  /* Landing page responsive */
+  /* Enhanced Landing page responsive */
+  .navigation {
+    padding: 16px 24px;
+  }
+
+  .navigation.scrolled {
+    padding: 12px 24px;
+  }
+
   .hero {
-    padding: 60px 24px;
+    padding: 120px 24px 80px;
+    min-height: auto;
   }
 
   .hero h1 {
     font-size: 40px;
+    line-height: 1.2;
   }
 
   .hero p {
@@ -1328,9 +1300,25 @@ textarea {
     gap: 12px;
   }
 
+  .heroStats {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .floatingCard {
+    display: none;
+  }
+
+  .statsContainer {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
   .features,
   .howItWorks,
-  .trust {
+  .trust,
+  .testimonials,
+  .cta {
     padding: 64px 24px;
   }
 
@@ -1339,9 +1327,24 @@ textarea {
   }
 
   .featuresGrid,
-  .stepsGrid {
+  .stepsGrid,
+  .testimonialsGrid {
     grid-template-columns: 1fr;
     gap: 24px;
+  }
+
+  .stepConnector {
+    display: none;
+  }
+
+  .ctaActions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ctaFeatures {
+    flex-direction: column;
+    gap: 16px;
   }
 
   .footerContent {
@@ -1379,5 +1382,28 @@ textarea {
 
   .authForm {
     max-width: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .statsContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .cta h2 {
+    font-size: 32px;
+  }
+
+  .navActions {
+    gap: 8px;
+  }
+
+  .navActions button {
+    padding: 8px 12px;
+    font-size: 14px;
   }
 }
