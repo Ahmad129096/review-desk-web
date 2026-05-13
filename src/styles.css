@@ -1209,6 +1209,101 @@ textarea {
   max-width: 300px;
 }
 
+/* Full-width success / verify panels on white (authRight) */
+.authSuccess--wide {
+  max-width: 100%;
+  width: 100%;
+}
+
+/* Centered card for token verify / standalone auth states */
+.verifyEmailStandalone {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: #f8fafc;
+}
+
+.verifyEmailCard {
+  width: 100%;
+  max-width: 440px;
+  padding: 40px 32px 36px;
+  text-align: center;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #e8eaed;
+  box-shadow: 0 12px 40px rgba(16, 24, 40, 0.08);
+}
+
+.verifyEmailCard .authSuccess {
+  max-width: none;
+  margin: 0 auto;
+}
+
+.verifyEmailCardTitle {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 10px;
+  color: #101828;
+}
+
+.verifyEmailCardText {
+  margin: 0 0 20px;
+  font-size: 16px;
+  line-height: 1.55;
+  color: #667085;
+}
+
+.verifyEmailActions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.verifyEmailErrorBox {
+  text-align: left;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  color: #b91c1c;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.authOutlineButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px 20px;
+  background: #fff;
+  color: #344054;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.authOutlineButton:hover:not(:disabled) {
+  border-color: #1f6feb;
+  color: #1f6feb;
+  background: #f8fafc;
+}
+
+.authOutlineButton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
 .successIcon {
   display: flex;
   align-items: center;
