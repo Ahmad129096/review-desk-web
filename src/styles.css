@@ -1233,6 +1233,22 @@ textarea {
   margin-bottom: 24px;
 }
 
+.successSubtext {
+  font-size: 14px;
+  color: #667085;
+  margin-bottom: 24px !important;
+}
+
+.successActions {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.successActions button {
+  width: 100%;
+}
+
 .successSpinner {
   display: flex;
   justify-content: center;
@@ -1243,6 +1259,43 @@ textarea {
   height: 24px;
   border-color: rgba(31, 111, 235, 0.3);
   border-top-color: #1f6feb;
+}
+
+.authFooter {
+  margin-top: 24px;
+  text-align: center;
+  border-top: 1px solid #e8eaed;
+  padding-top: 24px;
+}
+
+.authFooter p {
+  color: #667085;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  opacity: 0.8;
+}
+
+.backButton:hover {
+  opacity: 1;
+}
+
+.passwordHint {
+  font-size: 12px;
+  color: #667085;
+  margin-top: 4px;
 }
 
 @media (max-width: 900px) {

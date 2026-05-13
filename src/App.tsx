@@ -2,6 +2,8 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { RegisterPage } from "./pages/RegisterPage";
 import { LoginPage } from "./pages/LoginPage";
+import { ForgotPasswordPage } from "./pages/ForgotPasswordPage";
+import { ResetPasswordPage } from "./pages/ResetPasswordPage";
 import { DashboardPageContent } from "./pages/DashboardPageContent";
 import { ReviewsPageContent } from "./pages/ReviewsPageContent";
 import { TasksPage } from "./pages/TasksPage";
@@ -20,9 +22,10 @@ function AppContent() {
 
   useEffect(() => {
     // Check for existing token and validate user
-    api.me()
+    api
+      .me()
       .then((response: any) => {
-        console.log({ response }, "in app")
+        console.log({ response }, "in app");
         setUser(response.data.user);
         setLoading(false);
       })
@@ -43,8 +46,18 @@ function AppContent() {
 
   if (loading) {
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-        <div className="spinner" style={{ width: '40px', height: '40px' }}></div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <div
+          className="spinner"
+          style={{ width: "40px", height: "40px" }}
+        ></div>
       </div>
     );
   }
@@ -52,64 +65,103 @@ function AppContent() {
   return (
     <Routes>
       {/* Public routes - accessible only when NOT authenticated */}
-      <Route path="/" element={
-        <PublicRoute>
-          <LandingPage onAuthed={handleAuth} />
-        </PublicRoute>
-      } />
+      <Route
+        path="/"
+        element={
+          <PublicRoute>
+            <LandingPage onAuthed={handleAuth} />
+          </PublicRoute>
+        }
+      />
 
-      <Route path="/register" element={
-        <PublicRoute>
-          <RegisterPage onAuthed={handleAuth} />
-        </PublicRoute>
-      } />
+      <Route
+        path="/register"
+        element={
+          <PublicRoute>
+            <RegisterPage onAuthed={handleAuth} />
+          </PublicRoute>
+        }
+      />
 
-      <Route path="/login" element={
-        <PublicRoute>
-          <LoginPage onAuthed={handleAuth} />
-        </PublicRoute>
-      } />
+      <Route
+        path="/login"
+        element={
+          <PublicRoute>
+            <LoginPage onAuthed={handleAuth} />
+          </PublicRoute>
+        }
+      />
+
+      <Route
+        path="/forgot-password"
+        element={
+          <PublicRoute>
+            <ForgotPasswordPage />
+          </PublicRoute>
+        }
+      />
+
+      <Route
+        path="/reset-password"
+        element={
+          <PublicRoute>
+            <ResetPasswordPage />
+          </PublicRoute>
+        }
+      />
 
       {/* Protected routes - accessible only when authenticated */}
-      <Route path="/dashboard" element={
-        <ProtectedRoute>
-          {user && (
-            <AppLayout user={user} onLogout={handleLogout}>
-              <DashboardPageContent user={user} />
-            </AppLayout>
-          )}
-        </ProtectedRoute>
-      } />
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            {user && (
+              <AppLayout user={user} onLogout={handleLogout}>
+                <DashboardPageContent user={user} />
+              </AppLayout>
+            )}
+          </ProtectedRoute>
+        }
+      />
 
-      <Route path="/reviews" element={
-        <ProtectedRoute>
-          {user && (
-            <AppLayout user={user} onLogout={handleLogout}>
-              <ReviewsPageContent user={user} />
-            </AppLayout>
-          )}
-        </ProtectedRoute>
-      } />
+      <Route
+        path="/reviews"
+        element={
+          <ProtectedRoute>
+            {user && (
+              <AppLayout user={user} onLogout={handleLogout}>
+                <ReviewsPageContent user={user} />
+              </AppLayout>
+            )}
+          </ProtectedRoute>
+        }
+      />
 
-      <Route path="/tasks" element={
-        <ProtectedRoute>
-          {user && (
-            <AppLayout user={user} onLogout={handleLogout}>
-              <TasksPage user={user} onLogout={handleLogout} />
-            </AppLayout>
-          )}
-        </ProtectedRoute>
-      } />
+      <Route
+        path="/tasks"
+        element={
+          <ProtectedRoute>
+            {user && (
+              <AppLayout user={user} onLogout={handleLogout}>
+                <TasksPage user={user} onLogout={handleLogout} />
+              </AppLayout>
+            )}
+          </ProtectedRoute>
+        }
+      />
 
-      <Route path="/billing" element={
-        <ProtectedRoute>
-          {user && (
-            <AppLayout user={user} onLogout={handleLogout}>
-              <BillingPage user={user} onLogout={handleLogout} />
-            </AppLayout>
-          )}
-        </ProtectedRoute>
-      } />
+      <Route
+        path="/billing"
+        element={
+          <ProtectedRoute>
+            {user && (
+              <AppLayout user={user} onLogout={handleLogout}>
+                <BillingPage user={user} onLogout={handleLogout} />
+              </AppLayout>
+            )}
+          </ProtectedRoute>
+        }
+      />
 
       {/* Redirect any unknown routes to landing page */}
       <Route path="*" element={<Navigate to="/" replace />} />

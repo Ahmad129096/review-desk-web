@@ -22,7 +22,7 @@ const apiClient = axios.create({
 // Add auth token to requests
 apiClient.interceptors.request.use((config) => {
   const token = localStorage.getItem("access_token");
-  console.log({ token })
+  console.log({ token });
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -80,9 +80,28 @@ export const api = {
     apiClient.post<ApiResponse<AuthResponse>>("/api/auth/register", input),
 
   login: (input: { email: string; password: string }) =>
-    apiClient.post<ApiResponse<AuthResponse>>("/api/auth/login", input).then((res) => res.data),
+    apiClient
+      .post<ApiResponse<AuthResponse>>("/api/auth/login", input)
+      .then((res) => res.data),
 
   me: () => apiClient.get<ApiResponse<User>>("/api/auth/me"),
+
+  forgotPassword: (input: { email: string }) =>
+    apiClient.post<ApiResponse<{ message: string }>>(
+      "/api/auth/forgot-password",
+      input,
+    ),
+
+  resetPassword: (input: { token: string; password: string }) =>
+    apiClient.post<ApiResponse<{ message: string }>>(
+      "/api/auth/reset-password",
+      input,
+    ),
+
+  verifyResetToken: (token: string) =>
+    apiClient.get<ApiResponse<{ email: string }>>(
+      `/api/auth/verify-reset-token/${token}`,
+    ),
 
   // Businesses
   businesses: () =>
@@ -194,14 +213,18 @@ export const useAuth = () => {
       return response;
     },
     onSuccess: (response) => {
-      console.log({ response })
+      console.log({ response });
       localStorage.setItem("access_token", response.token!);
       queryClient.invalidateQueries({ queryKey: ["auth"] });
     },
   });
 
   const registerMutation = useMutation({
-    mutationFn: async (input: { name: string; email: string; password: string }) => {
+    mutationFn: async (input: {
+      name: string;
+      email: string;
+      password: string;
+    }) => {
       const response = await api.register(input);
       return response;
     },
