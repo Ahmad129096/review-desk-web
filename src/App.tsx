@@ -4,6 +4,7 @@ import { RegisterPage } from "./pages/RegisterPage";
 import { LoginPage } from "./pages/LoginPage";
 import { ForgotPasswordPage } from "./pages/ForgotPasswordPage";
 import { ResetPasswordPage } from "./pages/ResetPasswordPage";
+import { EmailVerificationPage } from "./pages/EmailVerificationPage";
 import { DashboardPageContent } from "./pages/DashboardPageContent";
 import { ReviewsPageContent } from "./pages/ReviewsPageContent";
 import { TasksPage } from "./pages/TasksPage";
@@ -110,11 +111,16 @@ function AppContent() {
         }
       />
 
+      <Route
+        path="/verify-email"
+        element={<EmailVerificationPage fallbackEmail={user?.email} />}
+      />
+
       {/* Protected routes - accessible only when authenticated */}
       <Route
         path="/dashboard"
         element={
-          <ProtectedRoute>
+          <ProtectedRoute user={user}>
             {user && (
               <AppLayout user={user} onLogout={handleLogout}>
                 <DashboardPageContent user={user} />
@@ -127,7 +133,7 @@ function AppContent() {
       <Route
         path="/reviews"
         element={
-          <ProtectedRoute>
+          <ProtectedRoute user={user}>
             {user && (
               <AppLayout user={user} onLogout={handleLogout}>
                 <ReviewsPageContent user={user} />
@@ -140,7 +146,7 @@ function AppContent() {
       <Route
         path="/tasks"
         element={
-          <ProtectedRoute>
+          <ProtectedRoute user={user}>
             {user && (
               <AppLayout user={user} onLogout={handleLogout}>
                 <TasksPage user={user} onLogout={handleLogout} />
@@ -153,7 +159,7 @@ function AppContent() {
       <Route
         path="/billing"
         element={
-          <ProtectedRoute>
+          <ProtectedRoute user={user}>
             {user && (
               <AppLayout user={user} onLogout={handleLogout}>
                 <BillingPage user={user} onLogout={handleLogout} />

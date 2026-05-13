@@ -103,6 +103,12 @@ export const api = {
       `/api/auth/verify-reset-token/${token}`,
     ),
 
+  /** Email link opens the SPA with `?token=`; the client sends the token here. */
+  verifyEmailToken: (input: { token: string }) =>
+    apiClient.get<ApiResponse<{ message?: string; email?: string }>>(
+      `/api/auth/verify-email/${input.token}`,
+    ),
+
   // Businesses
   businesses: () =>
     apiClient.get<ApiResponse<BusinessesResponse>>("/api/businesses"),
@@ -229,7 +235,6 @@ export const useAuth = () => {
       return response;
     },
     onSuccess: (response) => {
-      localStorage.setItem("access_token", response.data.token!);
       queryClient.invalidateQueries({ queryKey: ["auth"] });
     },
   });

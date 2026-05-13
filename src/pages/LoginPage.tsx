@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { setToken } from "../api-query";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { loginSchema, LoginFormData } from "../schemas/auth";
 import { useAuth } from "../api-query";
 
@@ -13,6 +13,10 @@ interface LoginPageProps {
 
 export function LoginPage({ onAuthed }: LoginPageProps) {
   const navigate = useNavigate();
+  const location = useLocation();
+  const verifiedJustNow = Boolean(
+    (location.state as { verified?: boolean } | null)?.verified,
+  );
   const [showPassword, setShowPassword] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
   const { loginMutation } = useAuth();
@@ -26,8 +30,11 @@ export function LoginPage({ onAuthed }: LoginPageProps) {
     resolver: zodResolver(loginSchema),
     mode: "onChange",
     defaultValues: {
-      rememberMe: false
-    }
+      rememberMe: false,
+      email:
+        (location.state as { email?: string; verified?: boolean } | null)
+          ?.email ?? "",
+    },
   });
 
   const onSubmit = async (data: LoginFormData) => {
@@ -117,6 +124,26 @@ export function LoginPage({ onAuthed }: LoginPageProps) {
           <div className="authForm">
             <h2>Sign in to your account</h2>
             <p>Welcome back! Please enter your details</p>
+
+            {verifiedJustNow && (
+              <div
+                className="formSuccess"
+                style={{
+                  marginBottom: "1rem",
+                  padding: "0.75rem 1rem",
+                  borderRadius: "8px",
+                  background: "rgba(34, 197, 94, 0.12)",
+                  color: "#166534",
+                  fontSize: "0.9rem",
+                }}
+              >
+                <CheckCircle
+                  size={16}
+                  style={{ verticalAlign: "text-bottom", marginRight: 6 }}
+                />
+                Your email is verified. You can sign in now.
+              </div>
+            )}
 
             <form onSubmit={handleSubmit(onSubmit)} className="authFormFields">
               <div className="formGroup">

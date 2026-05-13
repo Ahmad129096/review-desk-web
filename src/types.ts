@@ -3,6 +3,8 @@ export interface User {
   name: string;
   email: string;
   role: string;
+  /** When false, the app should send the user through email verification. */
+  emailVerified?: boolean;
 }
 
 export interface Business {
