@@ -36,6 +36,8 @@ interface ApiResponse<T> {
   tasks?: Task[];
   businesses?: Business[];
   reviews?: Review[];
+  url?: string;
+  business?: Business;
 }
 
 interface AuthResponse {
@@ -160,12 +162,12 @@ export const api = {
   // Google Integration
   googleAuthUrl: (businessId: string) =>
     apiClient.get<ApiResponse<{ url: string }>>(
-      `/api/google/auth-url/${businessId}`,
+      `/api/google/auth-url?businessId=${businessId}`,
     ),
 
   googleLocations: (businessId: string) =>
     apiClient.get<ApiResponse<GoogleLocationsResponse>>(
-      `/api/google/locations/${businessId}`,
+      `/api/google/locations?businessId=${businessId}`,
     ),
 
   googleSelectLocation: (input: {
@@ -179,10 +181,7 @@ export const api = {
     autoReply: boolean;
     autoReplyMinRating: number;
   }) =>
-    apiClient.post<ApiResponse<GoogleSyncResponse>>(
-      "/api/google/sync-reviews",
-      input,
-    ),
+    apiClient.post<ApiResponse<GoogleSyncResponse>>("/api/google/sync", input),
 
   // Review Actions
   regenerateReviewReply: (reviewId: string) =>

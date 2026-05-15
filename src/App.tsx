@@ -15,6 +15,9 @@ import { AppLayout } from "./components/AppLayout";
 import { ApiProvider, useAuth, api } from "./api-query";
 import { User } from "./types";
 import { LandingPage } from "./app/landingpage";
+import Contact from "./pages/Contact";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsofService";
 
 function AppContent() {
   const [user, setUser] = useState<User | null>(null);
@@ -114,6 +117,31 @@ function AppContent() {
       <Route
         path="/verify-email"
         element={<EmailVerificationPage fallbackEmail={user?.email} />}
+      />
+
+      <Route
+        path="/contact"
+        element={
+          <PublicRoute>
+            <Contact />
+          </PublicRoute>
+        }
+      />
+      <Route
+        path="/privacy-policy"
+        element={
+          <PublicRoute>
+            <PrivacyPolicy />
+          </PublicRoute>
+        }
+      />
+      <Route
+        path="/terms-of-service"
+        element={
+          <PublicRoute>
+            <TermsOfService />
+          </PublicRoute>
+        }
       />
 
       {/* Protected routes - accessible only when authenticated */}

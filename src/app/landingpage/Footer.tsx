@@ -4,26 +4,26 @@ export function Footer() {
       { name: "Features", href: "#" },
       { name: "Pricing", href: "#" },
       { name: "Integrations", href: "#" },
-      { name: "API", href: "#" }
+      { name: "API", href: "#" },
     ],
     company: [
       { name: "About", href: "#" },
       { name: "Blog", href: "#" },
       { name: "Careers", href: "#" },
-      { name: "Contact", href: "#" }
+      { name: "Contact", href: "/contact" },
     ],
     resources: [
       { name: "Documentation", href: "#" },
       { name: "Help Center", href: "#" },
       { name: "Community", href: "#" },
-      { name: "Status", href: "#" }
+      { name: "Status", href: "#" },
     ],
     legal: [
-      { name: "Privacy Policy", href: "#" },
-      { name: "Terms of Service", href: "#" },
+      { name: "Privacy Policy", href: "/privacy-policy" },
+      { name: "Terms of Service", href: "/terms-of-service" },
       { name: "Cookie Policy", href: "#" },
-      { name: "Security", href: "#" }
-    ]
+      { name: "Security", href: "#" },
+    ],
   };
 
   return (
@@ -40,25 +40,33 @@ export function Footer() {
           <div>
             <strong>Product</strong>
             {footerLinks.product.map((link, index) => (
-              <a key={index} href={link.href}>{link.name}</a>
+              <a key={index} href={link.href}>
+                {link.name}
+              </a>
             ))}
           </div>
           <div>
             <strong>Company</strong>
             {footerLinks.company.map((link, index) => (
-              <a key={index} href={link.href}>{link.name}</a>
+              <a key={index} href={link.href}>
+                {link.name}
+              </a>
             ))}
           </div>
           <div>
             <strong>Resources</strong>
             {footerLinks.resources.map((link, index) => (
-              <a key={index} href={link.href}>{link.name}</a>
+              <a key={index} href={link.href}>
+                {link.name}
+              </a>
             ))}
           </div>
           <div>
             <strong>Legal</strong>
             {footerLinks.legal.map((link, index) => (
-              <a key={index} href={link.href}>{link.name}</a>
+              <a key={index} href={link.href}>
+                {link.name}
+              </a>
             ))}
           </div>
         </div>
