@@ -128,7 +128,7 @@ function AppContent() {
         }
       />
       <Route
-        path="/privacy-policy"
+        path="/privacy"
         element={
           <PublicRoute>
             <PrivacyPolicy />
@@ -136,7 +136,7 @@ function AppContent() {
         }
       />
       <Route
-        path="/terms-of-service"
+        path="/terms"
         element={
           <PublicRoute>
             <TermsOfService />

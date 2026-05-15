@@ -192,7 +192,7 @@ export default function TermsOfService() {
               You may terminate your account at any time by contacting us. We
               may suspend or terminate your account if you violate these Terms.
               Upon termination, your data will be deleted in accordance with our{" "}
-              <Link to="/privacy-policy" style={styles.link}>
+              <Link to="/privacy" style={styles.link}>
                 Privacy Policy
               </Link>
               .

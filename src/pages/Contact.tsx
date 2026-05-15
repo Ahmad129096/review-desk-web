@@ -62,11 +62,11 @@ export default function Contact() {
           </div>
 
           <div style={styles.footer}>
-            <Link to="/privacy-policy" style={styles.footerLink}>
+            <Link to="/privacy" style={styles.footerLink}>
               Privacy Policy
             </Link>
             <span style={styles.dot}>·</span>
-            <Link to="/terms-of-service" style={styles.footerLink}>
+            <Link to="/terms" style={styles.footerLink}>
               Terms of Service
             </Link>
           </div>
